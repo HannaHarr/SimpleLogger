@@ -10,27 +10,31 @@ namespace SimpleLoggerLibrary
 
         public Logger()
         {
-            
+            messagePublisher = new ConsolePublisher();
         }
 
+        public Logger(IMessagePublisher publisher)
+        {
+            messagePublisher = publisher;
+        }
         public void Error(string message)
         {
-            throw new NotImplementedException();
+            messagePublisher.Publish($"Error: {message}");
         }
 
         public void Error(Exception ex)
         {
-            throw new NotImplementedException();
+            messagePublisher.Publish($"Error: {ex.Message}");
         }
 
         public void Info(string message)
         {
-            throw new NotImplementedException();
+            messagePublisher.Publish($"Info: {message}");
         }
 
         public void Warning(string message)
         {
-            throw new NotImplementedException();
+            messagePublisher.Publish($"Warning: {message}");
         }
     }
 }

@@ -8,7 +8,7 @@ namespace SimpleLoggerLibrary
     {
         public void Publish(string message)
         {
-            throw new NotImplementedException();
+            Console.WriteLine(message);
         }
     }
 }
