@@ -13,7 +13,7 @@ namespace SimpleLoggerConsoleApp
             consoleLogger.Info("Text info");
             consoleLogger.Warning("Text warning");
 
-            var fileLogger = new Logger();
+            var fileLogger = new Logger(new FilePublisher());
 
             fileLogger.Error("Text error");
             fileLogger.Info("Text info");

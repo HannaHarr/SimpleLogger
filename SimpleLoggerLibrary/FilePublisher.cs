@@ -7,7 +7,8 @@ namespace SimpleLoggerLibrary
 {
     public class FilePublisher : IMessagePublisher
     {
-        private string writePath;
+        private readonly string writePath;
+
         public FilePublisher()
         {
             writePath = @$"{Environment.CurrentDirectory}/Log.txt";
@@ -31,7 +32,7 @@ namespace SimpleLoggerLibrary
 
         public void Publish(string message)
         {
-            using (StreamWriter sw = new StreamWriter(writePath, true, System.Text.Encoding.Default))
+            using (var sw = new StreamWriter(writePath, true, Encoding.Default))
             {
                 sw.WriteLine(message);
             }

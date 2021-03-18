@@ -17,6 +17,7 @@ namespace SimpleLoggerLibrary
         {
             messagePublisher = publisher;
         }
+
         public void Error(string message)
         {
             messagePublisher.Publish($"Error: {message}");
