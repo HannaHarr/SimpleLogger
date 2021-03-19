@@ -1,4 +1,5 @@
 ﻿using System;
+using SimpleLoggerLibrary;
 
 namespace SimpleLoggerConsoleApp
 {
@@ -6,7 +7,19 @@ namespace SimpleLoggerConsoleApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var consoleLogger = new Logger();
+
+            consoleLogger.Error("Text error");
+            consoleLogger.Info("Text info");
+            consoleLogger.Warning("Text warning");
+
+            var fileLogger = new Logger(new FilePublisher());
+
+            fileLogger.Error("Text error");
+            fileLogger.Info("Text info");
+            fileLogger.Warning("Text warning");
+
+            Console.ReadKey(true);
         }
     }
 }
