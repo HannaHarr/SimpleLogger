@@ -1,5 +1,8 @@
 ﻿using System;
 using SimpleLoggerLibrary;
+using LoggingProxyLibrary;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SimpleLoggerConsoleApp
 {
@@ -9,15 +12,20 @@ namespace SimpleLoggerConsoleApp
         {
             var consoleLogger = new Logger();
 
-            consoleLogger.Error("Text error");
             consoleLogger.Info("Text info");
             consoleLogger.Warning("Text warning");
+            consoleLogger.Error("Text error");
 
-            var fileLogger = new Logger(new FilePublisher());
+            var fileLogger = LoggingProxy<ILogger>.CreateInstance(new Logger(new FilePublisher()), consoleLogger);
 
-            fileLogger.Error("Text error");
             fileLogger.Info("Text info");
             fileLogger.Warning("Text warning");
+            fileLogger.Error("Text error");
+
+            var list = LoggingProxy<IList<int>>.CreateInstance(new List<int>(), consoleLogger);
+
+            list.Add(2);
+            list.Add(5);
 
             Console.ReadKey(true);
         }
